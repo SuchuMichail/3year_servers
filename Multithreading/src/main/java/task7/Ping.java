@@ -1,7 +1,7 @@
 package task7;
 
 public class Ping extends Thread {
-    private final String string_ping = "ping";
+    private static final String string_ping = "ping";
     private final PingPongMessage message;
     public Ping(PingPongMessage message){
         this.message = message;

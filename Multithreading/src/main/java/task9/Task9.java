@@ -4,14 +4,15 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Task9 {
+    private static final String first_string = "ping";
+    private static final String second_string = "           pong";
+    
     public static void main(String[] args){
         ReentrantLock locker = new ReentrantLock();
-        Condition message_ping = locker.newCondition();
-        Condition message_pong = locker.newCondition();
+        Condition condition = locker.newCondition();
 
-        Message message = new Message("");
-        Thread ping = new PingLock(message,locker,message_ping,message_pong);
-        Thread pong = new PongLock(message,locker,message_ping,message_pong);
+        Thread ping = new PingPongMessage(locker,condition,first_string);
+        Thread pong = new PingPongMessage(locker,condition,second_string);
         
         ping.start();
         pong.start();

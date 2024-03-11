@@ -1,7 +1,7 @@
 package task7;
 
 public class Pong extends Thread {
-    private final String string_pong = "        pong";
+    private static final String string_pong = "        pong";
     private final PingPongMessage message;
     public Pong(PingPongMessage message){
         this.message = message;

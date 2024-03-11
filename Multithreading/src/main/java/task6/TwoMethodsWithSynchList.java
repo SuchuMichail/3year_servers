@@ -25,14 +25,15 @@ public class TwoMethodsWithSynchList extends Thread{
                 System.out.println("*****" + x);
             }
         }else{
-            for(int i = 0; i < count; i++){
-                while(list.isEmpty()){
-                    Thread.yield();
+            int i = 0;
+            while(i < count){
+                if(!list.isEmpty()){
+                    Random random = new Random();
+                    int index = random.nextInt(list.size());
+                    list.remove(index);
+                    System.out.println("        я делитнул с позиции " + index);
+                    i++;
                 }
-                Random random = new Random();
-                int index = random.nextInt(list.size());
-                list.remove(index);
-                System.out.println("        я делитнул с позиции " + index);
             }
         }
     }
