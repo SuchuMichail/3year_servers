@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Task9 {
     private static final String first_string = "ping";
     private static final String second_string = "           pong";
-    
+
     public static void main(String[] args){
         ReentrantLock locker = new ReentrantLock();
         Condition condition = locker.newCondition();
