@@ -9,8 +9,11 @@ public class Formatter {
         this.sdf = sdf;
     }
 
+    public ThreadLocal<SimpleDateFormat> getThreadLocalSDF(){
+        return sdf;
+    }
+
     public String format(Date date){
         return sdf.get().format(date);
     }
-
 }
