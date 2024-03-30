@@ -25,6 +25,11 @@ public class Task12 {
     public static void main(String[] args){
         List<String> emails = readEmails("src/main/java/task12/emails.txt");
 
+        Position[] positionMessages = new Position[emails.size()];
+        for (int i = 0; i < emails.size(); i++) {
+            positionMessages[i] = new Position(0);
+        }
+
         Message message1_1 = new Message("Sen1_1","Su1_1","Bo1_1");
         Message message1_2 = new Message("Sen1_2","Su1_2","Bo1_2");
         Message message1_3 = new Message("Sen1_3","Su1_3","Bo1_3");
@@ -35,9 +40,9 @@ public class Task12 {
         Message message3_2 = new Message("Sen3_2","Su3_2","Bo3_2");
         Message message3_3 = new Message("Sen3_3","Su3_3","Bo3_3");
 
-        Thread transport1 = new TransportArrayOfMessages(emails.get(0),new Message[]{message1_1,message1_2,message1_3});
-        Thread transport2 = new TransportArrayOfMessages(emails.get(1),new Message[]{message2_1,message2_2,message2_3});
-        Thread transport3 = new TransportArrayOfMessages(emails.get(2),new Message[]{message3_1,message3_2,message3_3});
+        Thread transport1 = new TransportArrayOfMessages(positionMessages,emails.get(0),new Message[]{message1_1,message1_2,message1_3});
+        Thread transport2 = new TransportArrayOfMessages(positionMessages,emails.get(0),new Message[]{message2_1,message2_2,message2_3});
+        Thread transport3 = new TransportArrayOfMessages(positionMessages,emails.get(2),new Message[]{message3_1,message3_2,message3_3});
 
         transport1.start();
         transport2.start();

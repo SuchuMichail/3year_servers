@@ -2,11 +2,11 @@ package task12;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class IntegerShell {
+public class Position {
     private int position;
     private final ReentrantLock locker;
 
-    public IntegerShell(int position){
+    public Position(int position){
         this.position = position;
         locker = new ReentrantLock();
     }

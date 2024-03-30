@@ -2,11 +2,10 @@ package task12;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Transport {
     private final String filename;
-    private final IntegerShell[] positionMessages;
+    private final Position[] positionMessages;
 
     private class WritterThread extends Thread {
         private static final String folder = "src/main/java/task12/";
@@ -29,8 +28,9 @@ public class Transport {
 
             File file = new File(folder + filename);
             try {
-                if (!file.exists())
+                if (!file.exists()) {
                     file.createNewFile();
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -43,12 +43,9 @@ public class Transport {
         }
     }
 
-    public Transport(String filename, int arrayLength) {
+    public Transport(String filename, Position[] positionMessages) {
         this.filename = filename;
-        this.positionMessages = new IntegerShell[arrayLength];
-        for (int i = 0; i < arrayLength; i++) {
-            this.positionMessages[i] = new IntegerShell(0);
-        }
+        this.positionMessages = positionMessages;
     }
 
     public void send(Message message) {
