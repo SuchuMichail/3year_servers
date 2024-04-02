@@ -2,10 +2,11 @@ package task12;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 public class Transport {
     private final String filename;
-    private final Position[] positionMessages;
+    private final HashMap<String,Position> mappa;
 
     private class WritterThread extends Thread {
         private static final String folder = "src/main/java/task12/";
@@ -17,14 +18,13 @@ public class Transport {
 
         @Override
         public void run() {
-            int pos = Math.abs(filename.hashCode()) % positionMessages.length;
+            Position position = mappa.get(filename);
+            position.getLocker().lock();
 
-            positionMessages[pos].getLocker().lock();
+            int currentPosition = position.getPosition();
+            position.setPosition(currentPosition + message.getSize());
 
-            int currentPosition = positionMessages[pos].getPosition();
-            positionMessages[pos].setPosition(positionMessages[pos].getPosition() + message.getSize());
-
-            positionMessages[pos].getLocker().unlock();
+            position.getLocker().unlock();
 
             File file = new File(folder + filename);
             try {
@@ -43,9 +43,9 @@ public class Transport {
         }
     }
 
-    public Transport(String filename, Position[] positionMessages) {
+    public Transport(String filename, HashMap<String,Position> mappa) {
         this.filename = filename;
-        this.positionMessages = positionMessages;
+        this.mappa = mappa;
     }
 
     public void send(Message message) {
