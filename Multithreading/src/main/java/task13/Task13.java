@@ -22,7 +22,7 @@ public class Task13 {
         ExecutorService readersPool = Executors.newFixedThreadPool(countOfReaders);
 
         Thread writersPoolFill = new Thread(() -> {
-            for (int i = 0; i < countOfWriters; i++) {
+            for (int i = 0; i < 50; i++) {
                 int finalI = i;
                 writersPool.execute(() -> {
                     locker.lock();
@@ -38,24 +38,24 @@ public class Task13 {
         });
 
         Thread readersPoolFill = new Thread(() -> {
-            for (int i = 0; i < countOfReaders; i++) {
-                readersPool.execute(() -> {
+            readersPool.execute(() -> {
+                while(true) {
                     locker.lock();
-                    try{
-                        while(dataQueue.isEmpty()){
+                    try {
+                        while (dataQueue.isEmpty()) {
                             //condition.await();
-                            if(!condition.await(100L, TimeUnit.MILLISECONDS)){
+                            if (!condition.await(100L, TimeUnit.MILLISECONDS)) {
                                 return;
                             }
                         }
-                        System.out.println("Removed " + dataQueue.getData());
+                        System.out.println("    Removed " + dataQueue.getData());
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     } finally {
                         locker.unlock();
                     }
-                });
-            }
+                }
+            });
         });
 
         readersPoolFill.start();
