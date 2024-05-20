@@ -60,7 +60,7 @@ public class StudentService implements IStudentService {
     @Override
     public List<GetStudentByIdResponse> getStudentsByGroup(GetStudentsByGroupRequest request) throws NotFoundService {
         studentGroupRepository.findById(request.getId()).orElseThrow(()->new NotFoundService("invalid group id"));
-        List<Student> studentList = studentRepository.getStudentsByGroup(request.getId());
+        List<Student> studentList = studentRepository.findAllStudentsByGroupId(request.getId());
 
         List<GetStudentByIdResponse> result = new ArrayList<>(studentList.size());
         for(Student st : studentList){

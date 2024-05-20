@@ -32,5 +32,5 @@ public interface IStudentRepository extends JpaRepository<Student,Long> {
     @Modifying
     @Query("SELECT st FROM Student AS st "+
             "WHERE st.groupId = :groupId")
-    List<Student> getStudentsByGroup(@Param(value = "groupId") Long groupId);
+    List<Student> findAllStudentsByGroupId(@Param(value = "groupId") Long groupId);
 }
