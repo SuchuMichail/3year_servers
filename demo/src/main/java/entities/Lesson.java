@@ -18,6 +18,10 @@ public class Lesson {
     private String endDate;
 
     @ManyToOne
+    @JoinColumn(name = "id_subject", referencedColumnName = "id")
+    private Subject subject;
+
+    @ManyToOne
     @JoinColumn(name = "id_group", referencedColumnName = "id")
     private StudentGroup group;
 
@@ -25,11 +29,16 @@ public class Lesson {
     @JoinColumn(name = "id_teacher", referencedColumnName = "id")
     private Teacher teacher;
 
-    public Lesson(Long id, String startDate, String endDate, StudentGroup group, Teacher teacher) {
+    public Lesson(Long id, Subject subject, String startDate, String endDate, Teacher teacher, StudentGroup group) {
         this.id = id;
+        this.subject = subject;
         this.startDate = startDate;
         this.endDate = endDate;
         this.group = group;
         this.teacher = teacher;
+    }
+
+    public Lesson(Lesson lesson) {
+        this(lesson.getId(), lesson.getSubject(), lesson.getStartDate(), lesson.getEndDate(), lesson.getTeacher(), lesson.getGroup());
     }
 }

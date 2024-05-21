@@ -1,19 +1,19 @@
 package requests.lessons;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.beans.ConstructorProperties;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class AddLessonRequest {
+public class EditLessonRequest {
+    @NotNull
+    private Long id;
     @NotNull
     private Long subjectId;
     @NotNull
@@ -32,13 +32,9 @@ public class AddLessonRequest {
     private Long groupId;
     private List<Long> attendanceList;
 
-    @JsonCreator
-    public AddLessonRequest(@JsonProperty("subjectId") Long subjectId,
-                            @JsonProperty("startDate") String startDate,
-                            @JsonProperty("endDate") String endDate,
-                            @JsonProperty("teacherId") Long teacherId,
-                            @JsonProperty("groupId") Long groupId,
-                            @JsonProperty("attendanceList") List<Long> attendanceList) {
+    @ConstructorProperties({"id", "subjectId", "startDate", "endDate", "teacherId", "groupId", "attendanceList"})
+    public EditLessonRequest(Long id, Long subjectId, String startDate, String endDate, Long teacherId, Long groupId, List<Long> attendanceList) {
+        this.id = id;
         this.subjectId = subjectId;
         this.startDate = startDate;
         this.endDate = endDate;
