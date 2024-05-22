@@ -15,15 +15,17 @@ public interface ILessonRepository extends JpaRepository<Lesson,Long> {
     @Transactional
     @Modifying
     @Query("UPDATE Lesson AS ls "+
-            "SET ls.startDate = :startDate, "+
+            "SET ls.subject.id = :subjectId, " +
+            "ls.startDate = :startDate, "+
             "ls.endDate = :endDate, "+
-            "ls.group = :group, "+
-            "ls.teacher = :teacher "+
+            "ls.group.id = :groupId, "+
+            "ls.teacher.id = :teacherId "+
             "WHERE ls.id = :id")
-    void update(@Param(value = "startDate") String startDate,
+    void update(@Param(value = "subjectId") Long subjectId,
+                @Param(value = "startDate") String startDate,
                 @Param(value = "endDate") String endDate,
-                @Param(value = "group") String group,
-                @Param(value = "teacher") String teacher,
+                @Param(value = "groupId") Long groupId,
+                @Param(value = "teacherId") Long teacherId,
                 @Param(value = "id") Long id);
 
 

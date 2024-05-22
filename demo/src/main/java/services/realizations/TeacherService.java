@@ -1,6 +1,5 @@
 package services.realizations;
 
-import entities.Subject;
 import entities.Teacher;
 import exceptions.service_exceptions.NotFoundService;
 import exceptions.service_exceptions.ServiceException;
@@ -11,8 +10,6 @@ import requests.teachers.AddTeacherRequest;
 import requests.teachers.DeleteTeacherRequest;
 import requests.teachers.EditTeacherRequest;
 import requests.teachers.GetTeacherByIdRequest;
-import responses.subjects.AddSubjectResponse;
-import responses.subjects.GetSubjectByIdResponse;
 import responses.teachers.AddTeacherResponse;
 import responses.teachers.GetTeacherByIdResponse;
 import services.interfaces.ITeacherService;
@@ -30,7 +27,7 @@ public class TeacherService implements ITeacherService {
     public AddTeacherResponse add(AddTeacherRequest request) {
         Teacher teacher = new Teacher(null, request.getLastName(),request.getFirstName(),request.getMiddleName());
 
-        var saved = teacherRepository.save(teacher);
+        Teacher saved = teacherRepository.save(teacher);
 
         return new AddTeacherResponse(saved.getId());
     }

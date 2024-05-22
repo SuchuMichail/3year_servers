@@ -14,7 +14,7 @@ import java.util.List;
 
 @Data
 public class GetLessonByIdResponse {
-    private Long id;
+    private long id;
     private GetSubjectByIdResponse subject;
     private String startDate;
     private String endDate;
@@ -23,7 +23,7 @@ public class GetLessonByIdResponse {
     private List<GetStudentByIdResponse> students = new ArrayList<>();
 
     @ConstructorProperties({"id", "subject", "startDate", "endDate", "teacher", "group", "list"})
-    public GetLessonByIdResponse(Long id,
+    public GetLessonByIdResponse(long id,
                                  GetSubjectByIdResponse subject,
                                  String startDate,
                                  String endDate,

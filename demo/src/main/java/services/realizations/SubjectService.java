@@ -1,7 +1,5 @@
 package services.realizations;
 
-import entities.Student;
-import entities.StudentGroup;
 import entities.Subject;
 import exceptions.service_exceptions.NotFoundService;
 import exceptions.service_exceptions.ServiceException;
@@ -12,9 +10,6 @@ import requests.subjects.AddSubjectRequest;
 import requests.subjects.DeleteSubjectRequest;
 import requests.subjects.EditSubjectRequest;
 import requests.subjects.GetSubjectByIdRequest;
-import responses.student_groups.AddStudentGroupResponse;
-import responses.student_groups.GetStudentGroupByIdResponse;
-import responses.students.GetStudentByIdResponse;
 import responses.subjects.AddSubjectResponse;
 import responses.subjects.GetSubjectByIdResponse;
 import services.interfaces.ISubjectService;
@@ -32,7 +27,7 @@ public class SubjectService implements ISubjectService {
     public AddSubjectResponse add(AddSubjectRequest request) throws NotFoundService {
         Subject subject = new Subject(null, request.getName());
 
-        var saved = subjectRepository.save(subject);
+        Subject saved = subjectRepository.save(subject);
 
         return new AddSubjectResponse(saved.getId());
     }

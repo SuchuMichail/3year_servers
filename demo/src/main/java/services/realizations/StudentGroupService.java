@@ -1,6 +1,5 @@
 package services.realizations;
 
-import entities.Student;
 import entities.StudentGroup;
 import exceptions.service_exceptions.NotFoundService;
 import exceptions.service_exceptions.ServiceException;
@@ -13,12 +12,8 @@ import requests.student_groups.EditStudentGroupRequest;
 import requests.student_groups.GetStudentGroupByIdRequest;
 import responses.student_groups.AddStudentGroupResponse;
 import responses.student_groups.GetStudentGroupByIdResponse;
-import responses.students.AddStudentResponse;
-import responses.students.GetStudentByIdResponse;
 import services.interfaces.IStudentGroupService;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class StudentGroupService implements IStudentGroupService {
@@ -30,7 +25,7 @@ public class StudentGroupService implements IStudentGroupService {
     public AddStudentGroupResponse addStudentGroup(AddStudentGroupRequest request) throws NotFoundService {
         StudentGroup studentGroup = new StudentGroup(null, request.getName());
 
-        var saved = studentGroupRepository.save(studentGroup);
+        StudentGroup saved = studentGroupRepository.save(studentGroup);
 
         return new AddStudentGroupResponse(saved.getId(), saved.getName());
     }

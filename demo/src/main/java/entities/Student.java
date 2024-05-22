@@ -21,7 +21,7 @@ public class Student {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "id_student_group", referencedColumnName = "id")
+    @JoinColumn(name = "id_group", referencedColumnName = "id")
     private StudentGroup studentGroup;
 
     public Student(Long id, String lastName, String firstName, String middleName, StudentGroup studentGroup, String status) {

@@ -2,9 +2,6 @@ package entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-import java.util.Objects;
 
 @Data
 @Entity
@@ -14,12 +11,13 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
-    @Column(name = "firstName")
+    @Column(name = "firstName", nullable = false)
     private String firstName;
-    @Column(name = "middleName")
+    @Column(name = "middleName", nullable = false)
     private String middleName;
+
 
     public Teacher(Long id, String lastName, String firstName, String middleName) {
         this.id = id;

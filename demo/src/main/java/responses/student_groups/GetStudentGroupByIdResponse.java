@@ -7,11 +7,11 @@ import java.beans.ConstructorProperties;
 
 @Data
 public class GetStudentGroupByIdResponse {
-    private Long id;
+    private long id;
     private String name;
 
     @ConstructorProperties({"id", "name"})
-    public GetStudentGroupByIdResponse(Long id, String name) {
+    public GetStudentGroupByIdResponse(long id, String name) {
         this.id = id;
         this.name = name;
     }

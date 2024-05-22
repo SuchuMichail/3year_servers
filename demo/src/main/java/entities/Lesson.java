@@ -12,9 +12,9 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "start_date")
+    @Column(name = "start_date", nullable = false)
     private String startDate;
-    @Column(name = "end_date")
+    @Column(name = "end_date", nullable = false)
     private String endDate;
 
     @ManyToOne

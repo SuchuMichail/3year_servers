@@ -30,7 +30,7 @@ public class StudentService implements IStudentService {
         Student student = new Student(null, request.getLastName(), request.getFirstName(),
                 request.getMiddleName(), new StudentGroup(request.getGroupId(), null), request.getStatus());
 
-        var saved = studentRepository.save(student);
+        Student saved = studentRepository.save(student);
 
         return new AddStudentResponse(saved.getId());
     }

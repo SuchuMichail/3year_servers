@@ -12,7 +12,7 @@ import java.util.List;
 public class LessonAttendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @OneToOne
@@ -25,7 +25,7 @@ public class LessonAttendance {
             inverseJoinColumns = @JoinColumn(name = "id_student"))
     private List<Student> students = new ArrayList<>();
 
-    public LessonAttendance(long id, Lesson lesson, List<Student> students) {
+    public LessonAttendance(Long id, Lesson lesson, List<Student> students) {
         this.id= id;
         this.lesson = lesson;
         this.students.addAll(students);
