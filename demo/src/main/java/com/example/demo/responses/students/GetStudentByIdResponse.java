@@ -16,7 +16,9 @@ public class GetStudentByIdResponse {
     private GetStudentGroupByIdResponse getStudentsByGroupResponse;
 
     @ConstructorProperties({"id", "lastName", "firstName", "middleName", "status", "group"})
-    public GetStudentByIdResponse(long id, String lastName, String firstName, String middleName, String status, GetStudentGroupByIdResponse getStudentsByGroupResponse) {
+    public GetStudentByIdResponse(long id, String lastName, String firstName, String middleName, String status,
+                                  GetStudentGroupByIdResponse getStudentsByGroupResponse
+    ) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -26,6 +28,7 @@ public class GetStudentByIdResponse {
     }
 
     public GetStudentByIdResponse(Student student) {
-        this(student.getId(), student.getLastName(), student.getFirstName(), student.getMiddleName(), student.getStatus(), new GetStudentGroupByIdResponse(student.getGroup()));
+        this(student.getId(), student.getLastName(), student.getFirstName(), student.getMiddleName(), student.getStatus(),
+                new GetStudentGroupByIdResponse(student.getGroup()));
     }
 }

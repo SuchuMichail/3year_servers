@@ -43,8 +43,9 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void deleteStudentById(DeleteStudentRequest request) throws NotFoundService {
+    public void delete(DeleteStudentRequest request) throws NotFoundService {
         studentRepository.findById(request.getId()).orElseThrow(()->new NotFoundService("invalid student id"));
+        System.out.println("id = " + request.getId());
         studentRepository.deleteById(request.getId());
     }
 

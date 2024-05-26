@@ -28,6 +28,8 @@ public class Lesson {
     @JoinColumn(name = "id_teacher", referencedColumnName = "id")
     private Teacher teacher;
 
+    public Lesson(){}
+
     public Lesson(Long id, Subject subject, String startDate, String endDate, Teacher teacher, StudentGroup group) {
         this.id = id;
         this.subject = subject;

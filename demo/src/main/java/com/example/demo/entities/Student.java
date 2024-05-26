@@ -24,6 +24,8 @@ public class Student {
     @JoinColumn(name = "id_group", referencedColumnName = "id")
     private StudentGroup group;
 
+    public Student(){}
+
     public Student(Long id, String lastName, String firstName, String middleName, StudentGroup group, String status) {
         this.id = id;
         this.lastName = lastName;

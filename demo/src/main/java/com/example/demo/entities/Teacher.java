@@ -18,6 +18,7 @@ public class Teacher {
     @Column(name = "middleName", nullable = false)
     private String middleName;
 
+    public Teacher(){}
 
     public Teacher(Long id, String lastName, String firstName, String middleName) {
         this.id = id;

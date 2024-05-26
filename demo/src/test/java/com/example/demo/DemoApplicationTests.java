@@ -11,3 +11,5 @@ class DemoApplicationTests {
 	}
 
 }
+//rest-assured.io
+//автотесты

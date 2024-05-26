@@ -18,6 +18,8 @@ public class Subject {
     @Column(name = "name", nullable = false)
     private String name;
 
+    public Subject(){}
+
     public Subject(Long id, String name) {
         this.id = id;
         this.name = name;

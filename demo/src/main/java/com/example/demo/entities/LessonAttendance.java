@@ -25,6 +25,8 @@ public class LessonAttendance {
             inverseJoinColumns = @JoinColumn(name = "id_student"))
     private List<Student> students = new ArrayList<>();
 
+    public LessonAttendance(){};
+
     public LessonAttendance(Long id, Lesson lesson, List<Student> students) {
         this.id= id;
         this.lesson = lesson;

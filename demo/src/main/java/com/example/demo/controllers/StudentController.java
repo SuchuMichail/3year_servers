@@ -29,7 +29,9 @@ public class StudentController {
 
     @DeleteMapping("/deleteStudentById")
     public ResponseEntity<?> deleteStudent(@Valid @RequestBody DeleteStudentRequest request) throws NotFoundService {
-        service.deleteStudentById(request);
+        System.out.println("id = " + request.getId());
+        service.delete(request);
+        System.out.println("I DELETED");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
